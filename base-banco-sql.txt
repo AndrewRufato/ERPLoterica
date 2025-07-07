@@ -1,0 +1,111 @@
+-- Tabela de usuários (caixas)
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de clientes (sem acesso ao sistema)
+CREATE TABLE clientes (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de produtos
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco NUMERIC(10, 2) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de estoque (entrada de produtos)
+CREATE TABLE estoque (
+    id SERIAL PRIMARY KEY,
+    produto_id INT REFERENCES produtos(id),
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    data_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela de combos
+CREATE TABLE combos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco_total NUMERIC(10, 2) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Relação entre combos e produtos (muitos para muitos)
+CREATE TABLE combo_produto (
+    id SERIAL PRIMARY KEY,
+    combo_id INT REFERENCES combos(id) ON DELETE CASCADE,
+    produto_id INT REFERENCES produtos(id) ON DELETE CASCADE,
+    quantidade INT NOT NULL CHECK (quantidade > 0)
+);
+
+-- Tabela de vendas
+CREATE TABLE vendas (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT REFERENCES usuarios(id),
+    cliente_id INT REFERENCES clientes(id),
+    forma_pagamento VARCHAR(20) NOT NULL CHECK (forma_pagamento IN ('credito', 'debito', 'dinheiro', 'pix', 'fiado')),
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Itens de venda (produtos vendidos individualmente)
+CREATE TABLE itens_venda (
+    id SERIAL PRIMARY KEY,
+    venda_id INT REFERENCES vendas(id) ON DELETE CASCADE,
+    produto_id INT REFERENCES produtos(id),
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    preco_unitario NUMERIC(10, 2) NOT NULL
+);
+
+-- Itens de venda de combos (combos vendidos inteiros)
+CREATE TABLE itens_combo_venda (
+    id SERIAL PRIMARY KEY,
+    venda_id INT REFERENCES vendas(id) ON DELETE CASCADE,
+    combo_id INT REFERENCES combos(id),
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    preco_total NUMERIC(10, 2) NOT NULL
+);
+
+
+
+---------------------------
+
+
+-- 1. Criar a tabela de empresas
+CREATE TABLE empresas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(18), -- opcional
+    criada_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Adicionar a coluna empresa_id nas tabelas existentes
+
+ALTER TABLE usuarios ADD COLUMN empresa_id INT NOT NULL;
+ALTER TABLE usuarios ADD CONSTRAINT fk_usuario_empresa FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE;
+
+ALTER TABLE vendas ADD COLUMN empresa_id INT NOT NULL;
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_empresa FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE;
+
+-- 3. Criar a tabela de recebimentos de vendas
+
+CREATE TABLE venda_receber (
+    id SERIAL PRIMARY KEY,
+    venda_id INT REFERENCES vendas(id) ON DELETE CASCADE,
+    valor NUMERIC(10, 2) NOT NULL,
+    data_recebimento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    tipo_recebimento VARCHAR(20) NOT NULL CHECK (tipo_recebimento IN ('credito', 'debito', 'dinheiro', 'pix', 'fiado')),
+    observacao TEXT,
+    empresa_id INT NOT NULL,
+    CONSTRAINT fk_receber_empresa FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE
+);
