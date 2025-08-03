@@ -10,7 +10,7 @@ interface VendaPaga {
   total: number | string;
   forma_pagamento: string;
   nome_cliente: string;
-  createdAt: string;
+  data_registro: string; // ✅ corrigido aqui
 }
 
 interface VendaReceber {
@@ -127,7 +127,8 @@ useEffect(() => {
                   <td>{venda.venda_id}</td>
                   <td>R$ {Number(venda.total).toFixed(2)}</td>
                   <td>{venda.forma_pagamento}</td>
-                  <td>{formatarData(venda.createdAt)}</td>
+                  
+                  <td>{formatarData(venda.data_registro)}</td>
                 </tr>
               ))}
             </tbody>

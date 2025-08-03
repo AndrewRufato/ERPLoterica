@@ -6,7 +6,10 @@ const { VendasPagas, VendasReceber } = require('../models');
 // GET /api/relatorios/vendas-pagas
 router.get('/vendas-pagas', checkToken, async (req, res) => {
   try {
-    const vendas = await VendasPagas.findAll();
+    const vendas = await VendasPagas.findAll({
+      attributes: ['id', 'venda_id', 'total', 'forma_pagamento', 'nome_cliente', 'data_registro'],
+      order: [['data_registro', 'DESC']]
+    });
 
     const vendasFormatadas = vendas.map(venda => ({
       ...venda.toJSON(),
@@ -25,7 +28,10 @@ router.get('/vendas-pagas', checkToken, async (req, res) => {
 // GET /api/relatorios/vendas-receber
 router.get('/vendas-receber', checkToken, async (req, res) => {
   try {
-    const vendas = await VendasReceber.findAll();
+    const vendas = await VendasReceber.findAll({
+      attributes: ['id', 'venda_id', 'total', 'nome_cliente', 'cpf_cliente', 'data_registro'],
+      order: [['data_registro', 'DESC']]
+    });
 
     const vendasFormatadas = vendas.map(venda => ({
       ...venda.toJSON(),

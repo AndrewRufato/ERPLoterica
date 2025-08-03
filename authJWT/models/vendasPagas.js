@@ -29,6 +29,11 @@ VendasPagas.init({
   cpf_cliente: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  data_registro: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW // ✅ Preenche automaticamente no momento do insert
   }
 }, {
   sequelize,
