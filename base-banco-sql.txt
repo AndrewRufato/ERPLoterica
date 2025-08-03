@@ -109,3 +109,35 @@ CREATE TABLE venda_receber (
     empresa_id INT NOT NULL,
     CONSTRAINT fk_receber_empresa FOREIGN KEY (empresa_id) REFERENCES empresas(id) ON DELETE CASCADE
 );
+
+
+-- 1. Criar a tabela vendas_receber primeiro
+CREATE TABLE IF NOT EXISTS vendas_receber (
+    id SERIAL PRIMARY KEY,
+    venda_id INT NOT NULL,
+    valor NUMERIC(10, 2) NOT NULL CHECK (valor >= 0),
+    identificador_recebimento VARCHAR(50) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- FK para vendas
+    CONSTRAINT fk_vendas_receber_venda FOREIGN KEY (venda_id)
+        REFERENCES vendas(id) ON DELETE CASCADE
+);
+
+-- 2. Agora criar a tabela vendas_pagas, que depende da anterior
+CREATE TABLE IF NOT EXISTS vendas_pagas (
+    id SERIAL PRIMARY KEY,
+    vendas_receber_id INT NOT NULL,
+    venda_id INT NOT NULL,
+    valor_pago NUMERIC(10, 2) NOT NULL CHECK (valor_pago >= 0),
+    meio_pagamento VARCHAR(20) NOT NULL CHECK (meio_pagamento IN ('credito', 'debito', 'dinheiro', 'pix', 'fiado')),
+    pago_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- FK para vendas_receber
+    CONSTRAINT fk_vendas_pagas_receber FOREIGN KEY (vendas_receber_id)
+        REFERENCES vendas_receber(id) ON DELETE CASCADE,
+
+    -- FK para vendas
+    CONSTRAINT fk_vendas_pagas_venda FOREIGN KEY (venda_id)
+        REFERENCES vendas(id) ON DELETE CASCADE
+);
