@@ -1,0 +1,33 @@
+.relatorio h2 {
+    color: white;
+    text-align: center;
+    margin: 50px 0px;
+}
+
+.relatorio h4{
+    color: white;
+    margin: 20px 0px;
+}
+
+.relatorio p{
+    color: white;
+    margin: 20px 0px;
+}
+
+.relatorio button{
+    width:100%;
+    max-width:300px;
+    margin: 0px 10px;
+}
+
+.tabela-relatorio td, .tabela-relatorio th {
+    padding: 10px !important;
+}
+
+table.tabela-relatorio {
+    background-color: #240046;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: #ffffff;
+}

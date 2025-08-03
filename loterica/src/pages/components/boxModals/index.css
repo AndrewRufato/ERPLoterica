@@ -1,0 +1,63 @@
+.ModalCaixa {
+    width: 1200px;
+    height: 500px;
+    max-width: 100%;
+    margin: 20px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-itens:center;
+}
+
+.ModalCaixa div {
+    display: flex;
+    flex-direction: column;
+}
+
+.ModalCaixa h3{
+    text-align: center;
+    color: #371656;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.ModalCaixa input{
+    width:800px;
+    max-width:100%;
+    background-color:#fff;
+    padding: 8px; 
+    border: 1px solid #371656;  
+    margin: 5px auto;
+    color: #371656;
+    text-align:center;
+    font-size: 18px;
+    font-weight: 500
+}
+
+.ModalCaixa button{
+    width:800px;
+    max-width:100%;
+    margin: 5px auto;
+
+}
+
+.ModalCaixa button{
+    transition: 1.2s ease;
+}
+
+.ModalCaixa button.Salvar{
+    background-color:#0dbc79;
+    border: 1px solid #0dbc79;
+    
+}
+
+.ModalCaixa button:hover{
+    opacity: .6;
+}
+
+.ModalCaixa button.Fechar{
+    background-color:#62001a;
+    border: 1px solid #62001a
+    
+}

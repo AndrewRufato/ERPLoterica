@@ -1,0 +1,46 @@
+#grid{
+    display: flex;
+    min-height: 10vw;
+    width: 100%;
+    background-color: #fff;
+    margin: 5px 0px;
+    padding: 10px;
+    border-radius: 30px;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.ItensProtudos{
+    max-height: 440px;       /* Altura máxima do grid */
+    overflow-y: auto;        /* Adiciona scroll vertical apenas quando necessário */
+    border: 1px solid #ccc;  /* Opcional, para visualização */
+    padding: 10px;
+    border: none;
+
+}
+
+
+/* Configurações da scroll-bar*/
+
+/* Largura da barra */
+#grid::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Fundo da barra */
+#grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+/* Alça (a parte que se move) */
+#grid::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Alça quando passa o mouse */
+#grid::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

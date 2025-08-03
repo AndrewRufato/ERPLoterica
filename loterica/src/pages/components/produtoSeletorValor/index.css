@@ -1,0 +1,27 @@
+#produto-seletor-valor{
+    background-color: #fff;
+    color: #240046;
+    font-weight: 600;
+    width: calc(100% - 10px);
+    display: block;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px;
+    margin: 10px auto;
+   
+}
+
+select#produto-seletor-valor:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+.div-produto-seletor-valor{
+    border: 1px solid #240046;
+    border-radius: 8px;
+    width: calc(100% - 10px);
+    max-width: 800px;    
+    margin-left: auto;
+    margin-right: auto;
+}

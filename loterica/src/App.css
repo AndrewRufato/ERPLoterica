@@ -1,0 +1,40 @@
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+@media (max-width: 768px) {
+
+#root{
+    /*overflow-x:hidden;*/
+
+}
+
+#root > .container {
+    margin-top: 100px !important;   
+    max-width:100%; 
+    width:100%;
+}
+
+
+#root > .container div{
+
+   max-width:100%;
+    
+
+}
+div#menu-site.hidden {
+   position: absolute !important;
+    z-index: 0;
+    height: 0px;
+    background: transparent;
+    border: none;   
+    border-right: 0px solid #fff;
+}
+
+button.Button{
+    width:100%
+
+}
+}

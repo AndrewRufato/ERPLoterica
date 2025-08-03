@@ -1,0 +1,12 @@
+.infoCliente{
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.infoCliente h3{
+    font-weith: 600;
+    font-size: 20px;
+    color: 240046;
+}

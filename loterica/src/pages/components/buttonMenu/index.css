@@ -1,0 +1,26 @@
+button.coluna-btn {
+    background-color: #371656;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.menu-button {
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.menu-button.visible {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  /* você pode ajustar conforme o layout */
+}
+
+.menu-button.hidden {
+  position: static; /* ou nenhum, depende de onde estiver o botão */
+}
+
+

@@ -1,0 +1,33 @@
+.ItensProtudos {
+    display: flex;
+    flex-direction: column;
+    
+    color: #fff;
+    border-radius: 6px;
+    width: 100%;
+    height: 600px;
+    padding: 8px 12px;
+    
+}
+
+.item-linha {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    background-color: #230043;
+    margin: 3PX 0PX;
+    border-radius: 6px
+}
+
+.item-linha div {
+    width: 100%;
+    max-width: 275px;
+    JUSTIFY-CONTENT: CENTER;
+    DISPLAY: FLEX;
+   
+    
+    
+    
+}
+

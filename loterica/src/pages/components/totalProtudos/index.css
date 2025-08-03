@@ -1,0 +1,11 @@
+#TotalProtudos {
+    display: flex;
+    flex-direction: row;
+    background-color: #230043;
+    color: #fff;
+    border-radius: 6px;
+    width: 100%;
+    height: 60px;
+    padding: 8px 12px;
+    justify-content: space-around;
+}

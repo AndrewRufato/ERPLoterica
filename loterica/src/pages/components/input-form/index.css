@@ -1,0 +1,38 @@
+.InputForm {
+    width: 500px ;
+    max-width: 100%;
+}
+.InputForm Input{
+    background-color: #fff; 
+    border-radius: 50px;
+    border: none;
+    padding: 3px 10px;
+    margin: 10px 0px;
+    max-width=100%;
+    width=500px;
+    height: 40px;
+    color: #240046;
+    font-weight: 700px;
+    font-size: 22px;
+    width: 100%;
+}
+.InputForm Input:focus{
+
+    border:none !important;
+}
+::placeholder{
+    font-weight: 700px;
+    font-size: 22px;
+    padding: 10px;
+    color: #240046; 
+    text-align: center;
+}
+.InputForm Input:focus{
+    border: 1px solid #000   
+}
+.InputForm Label {
+    display: block;
+    position: absolute;
+    padding: 3px 15px;
+    font-weight: 700;
+}
